@@ -1,0 +1,12 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+ name: llama2-7b-pytorch-pvc
+spec:
+ accessModes:
+  - ReadWriteOnce
+ resources:
+  requests:
+   storage: 60Gi
+ storageClassName: csi-rbd-sc
+

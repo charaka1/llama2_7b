@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+    name: llama2-7b-pytorch-job
+    labels:
+        kueue.x-k8s.io/queue-name:  eidf114ns-user-queue
+spec:
+    completions: 1
+    template:
+        metadata:
+            name: llama2-7b-pytorch-pod
+        spec:
+            restartPolicy: Never
+            containers:
+            - name: llama2-7b-pytorch-con
+              image: charaka/transformers_pytorch:v1.0-transformers
+              command: ["python3"]
+              args: ["/mnt/ceph_rbd/Llama_2_7b_inference.py"]
+              volumeMounts:
+                - mountPath: /mnt/ceph_rbd
+                  name: volume
+              resources:
+                requests:
+                  cpu: 2
+                  memory: "16Gi"
+                limits:
+                  cpu: 4
+                  memory: "16Gi"
+                  nvidia.com/gpu: 1
+            nodeSelector:
+                nvidia.com/gpu.product: NVIDIA-A100-SXM4-40GB-MIG-1g.5gb
+            volumes:
+                - name: volume
+                  persistentVolumeClaim:
+                    claimName: llama2-7b-pytorch-pvc
+
