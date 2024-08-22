@@ -2,9 +2,7 @@ import torch
 from transformers import LlamaTokenizer, LlamaForCausalLM
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-# Specify the local directory where your LLaMA 2 7B model is saved
-#model_directory = "/Users/charaka/Documents/charaka/llama2-7b"
-
+# Download the Llama 2 7B model from Hugging Face using your access token
 access_token = "Your_Hugging_Face_Access_Token"
 model_name = "meta-llama/Llama-2-7b-chat-hf"
 
