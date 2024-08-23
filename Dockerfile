@@ -2,7 +2,7 @@
 FROM --platform=linux/amd64 pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel
 
 # Install HuggingFace Transformers library 
-RUN pip install torch transformers datasets accelerate peft
+RUN pip install torch transformers datasets accelerate peft sentencepiece
 
 # Set working directory
 WORKDIR /app
