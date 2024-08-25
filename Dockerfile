@@ -3,8 +3,9 @@ FROM --platform=linux/amd64 pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel
 
 # Install HuggingFace Transformers library 
 RUN pip install torch transformers datasets accelerate peft sentencepiece
+RUN pip install protobuf
 
-# Set working directory
+# Setup working directory
 WORKDIR /app
 
 # Copy your Python source file and data file into the container
